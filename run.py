@@ -1,5 +1,6 @@
 from flask import Flask
 from app import api_bp
+from flask_cors import CORS
 
 def create_app(config_filename):
     app = Flask(__name__)
@@ -12,4 +13,5 @@ def create_app(config_filename):
 
 if __name__ == "__main__":
     app = create_app("config")
+    cors = CORS(app, resources={r"/*": {"origins": "*"}})
     app.run(debug=True)
