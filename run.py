@@ -4,15 +4,11 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 
-def create_app(config_filename):
-    app.config.from_object(config_filename)
-    
-    app.register_blueprint(api_bp, url_prefix='/')
+app.config.from_object("config")
+app.register_blueprint(api_bp, url_prefix='/')
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
-    return app
 
 
 if __name__ == "__main__":
-    app = create_app("config")
-    cors = CORS(app, resources={r"/*": {"origins": "*"}})
     app.run(debug=True)
