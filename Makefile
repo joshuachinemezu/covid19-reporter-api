@@ -1,7 +1,9 @@
-appname=covid19-reporter-api
 
-test:
-	python3 -m pytest
+build:
+	docker build -t covid-reporter-api:latest .
 
-launch:
-	gunicorn app:server
+run:
+	docker run  -p 5000:5000 covid-reporter-api
+
+ssh:
+	docker run --rm -it --entrypoint /bin/sh covid-reporter-api
